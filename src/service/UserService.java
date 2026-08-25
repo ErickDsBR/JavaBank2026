@@ -21,13 +21,11 @@ public class UserService {
             System.out.println("Informe o saldo do usuário: ");
             double balance = Double.parseDouble(sc.nextLine());
 
-            if (balance != 0) {
-                System.out.println("O saldo deve ser Maior ou igual a zero.");
+            if (balance < 0) {
+                System.out.println("O saldo deve ser maior ou igual a zero.");
                 continue;
             }
-            else{
-                System.out.println("Saldo válido.");
-            }
+            System.out.println("Saldo válido.");
 
             UserData newUser = new UserData(accountNumber, name, balance);
             usersList.add(newUser);
