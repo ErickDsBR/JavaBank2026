@@ -18,9 +18,11 @@ demonstrando conceitos de Programação Orientada a Objetos e organização em c
 
 | Funcionalidade | Status |
 |----------------|--------|
-| Cadastro de clientes | ✅ Implementado |
+| Cadastro de clientes (CPF, nome, saldo) | ✅ Implementado |
 | Listagem de usuários | ✅ Implementado |
-| Consulta de saldos | ✅ Implementado |
+| Consulta de saldo por CPF | ✅ Implementado |
+| Seleção de usuário atual (sessão) | ✅ Implementado |
+| Validação de saldo negativo | ✅ Implementado |
 | Depósito/Transferência | 🔄 Planejado |
 | Saque | 🔄 Planejado |
 | Persistência de dados | 🔄 Planejado |
@@ -32,21 +34,21 @@ demonstrando conceitos de Programação Orientada a Objetos e organização em c
 O projeto segue o padrão **em camadas**, separando responsabilidades:
 
 ```
-┌─────────────────────────────────────┐
-│        Camada de Apresentação       │
-│            (Menu.java)              │
-├─────────────────────────────────────┤
-│        Camada de Serviço            │
-│         (UserService.java)          │
-├─────────────────────────────────────┤
-│        Camada de Modelo             │
-│          (UserData.java)            │
-└─────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│        Camada de Apresentação               │
+│            (App.java → Menu.java)           │
+├─────────────────────────────────────────────┤
+│        Camada de Serviço                    │
+│         (UserService.java)                  │
+├─────────────────────────────────────────────┤
+│        Camada de Modelo                     │
+│          (UserData.java)                    │
+└─────────────────────────────────────────────┘
 ```
 
-- **Apresentação**: Interface com o usuário (console)
-- **Serviço**: Lógica de negócio e regras
-- **Modelo**: Estrutura de dados
+- **Apresentação**: Interface com o usuário via console (menu interativo)
+- **Serviço**: Lógica de negócio (criar usuários, listar, consultar saldo, sessão)
+- **Modelo**: Estrutura de dados (conta, nome, saldo)
 
 ---
 
@@ -78,10 +80,24 @@ src/
 cd src
 
 # 2. Compilar os arquivos
-javac *.java modules/*.java service/*.java components/*.java
+javac *.java modules/UserData/*.java service/*.java components/*.java
 
 # 3. Executar
 java App
+```
+
+### Menu Interativo
+
+```
+===MENU===
+Usuário atual: Nenhum usuário selecionado
+Chose An Option
+
+1 - Criar/Abrir Conta do Cliente
+2 - Consultar Saldo
+3 - Depositar/Transferir
+4 - Realizar Saque
+5 - Sair
 ```
 
 ---
@@ -92,23 +108,27 @@ java App
 |------------|-----|
 | Java 8+ | Linguagem principal |
 | ArrayList | Armazenamento em memória |
-| Scanner | Entrada de dados |
-| Switch-Case | Controle de fluxo |
+| Scanner | Entrada de dados no console |
+| Switch-Case | Controle de fluxo do menu |
+| Classes e Objetos | Modelo de dados (UserData) |
 
 ---
 
 ## 📈 Roadmap
 
 ### ✅ Concluído
-- [x] Estrutura do projeto
-- [x] Cadastro de usuários
+- [x] Estrutura do projeto em camadas
+- [x] Cadastro de usuários (CPF, nome, saldo)
 - [x] Listagem de usuários
-- [x] Menu interativo
+- [x] Consulta de saldo por CPF
+- [x] Sistema de sessão (usuário atual)
+- [x] Validação de saldo negativo
+- [x] Menu interativo com opções
 
 ### 🔄 Em desenvolvimento
-- [ ] Implementar depósito
-- [ ] Implementar saque
-- [ ] Implementar transferência
+- [ ] Depósito em conta
+- [ ] Saque
+- [ ] Transferência entre contas
 
 ### 📋 Futuro
 - [ ] Banco de dados (persistência)
@@ -121,10 +141,11 @@ java App
 ## 💡 O que aprendi
 
 - Organização de código em **pacotes e camadas**
-- Uso de **coleções** (ArrayList) para armazenamento
-- Manipulação de **entrada/saída** de dados
-- Importância da **validação** de dados
-- Planejamento de **funcionalidades** antes de codar
+- Uso de **coleções** (ArrayList) para armazenamento em memória
+- Manipulação de **entrada/saída** de dados via console
+- Importância da **validação** de dados (saldo negativo)
+- Controle de fluxo com **switch-case** e loops
+- Sistema de **sessão** para rastrear o usuário atual
 
 ---
 
