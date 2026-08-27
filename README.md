@@ -1,49 +1,139 @@
-# JavaBank2026
+# 🏦 JavaBank2026
 
-## Descrição
-Sistema bancário em console desenvolvido em Java para gerenciamento de contas cliente. O aplicativo permite criar/contas, consultar saldos, depositar/sacar e listar usuários através de um menu interativo.
+![Java](https://img.shields.io/badge/Java-8%2B-orange)
+![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## Funcionalidades
-- Criar/abrir conta de cliente
-- Consultar saldo de usuários
-- Depositar/transferir valores
-- Realizar saques
-- Listar todos os usuários cadastrados
+---
 
-## Estrutura do Projeto
+## 🎯 Sobre
+
+O **JavaBank2026** é um sistema bancário desenvolvido em Java como projeto acadêmico.
+O sistema simula operações bancárias básicas através de um menu interativo no console,
+demonstrando conceitos de Programação Orientada a Objetos e organização em camadas.
+
+---
+
+## ✨ Funcionalidades
+
+| Funcionalidade | Status |
+|----------------|--------|
+| Cadastro de clientes | ✅ Implementado |
+| Listagem de usuários | ✅ Implementado |
+| Consulta de saldos | ✅ Implementado |
+| Depósito/Transferência | 🔄 Planejado |
+| Saque | 🔄 Planejado |
+| Persistência de dados | 🔄 Planejado |
+
+---
+
+## 🏗️ Arquitetura
+
+O projeto segue o padrão **em camadas**, separando responsabilidades:
+
+```
+┌─────────────────────────────────────┐
+│        Camada de Apresentação       │
+│            (Menu.java)              │
+├─────────────────────────────────────┤
+│        Camada de Serviço            │
+│         (UserService.java)          │
+├─────────────────────────────────────┤
+│        Camada de Modelo             │
+│          (UserData.java)            │
+└─────────────────────────────────────┘
+```
+
+- **Apresentação**: Interface com o usuário (console)
+- **Serviço**: Lógica de negócio e regras
+- **Modelo**: Estrutura de dados
+
+---
+
+## 📁 Estrutura do Projeto
 
 ```
 src/
-├── App.java          -- Ponto de entrada da aplicação
+├── App.java                          # Ponto de entrada
 ├── components/
-│   └── Menu.java     -- Menu interativo do sistema
+│   └── Menu.java                     # Menu interativo
 ├── modules/
-│   └── UserData.java -- Modelo de dados do usuário (conta, nome, saldo)
+│   └── UserData/
+│       └── UserData.java             # Modelo de dados
 └── service/
-    └── UserService.java -- Lógica de negócio para cadastro e listagem de usuários
+    └── UserService.java              # Lógica de negócio
 ```
 
-## Como Executar
+---
+
+## 🚀 Como Executar
 
 ### Pré-requisitos
 - Java 8 ou superior instalado
 
-### Compilação e execução
+### Passos
+
 ```bash
-# Navegar até o diretório src
+# 1. Navegar até o diretório src
 cd src
 
-# Compilar todos os arquivos
+# 2. Compilar os arquivos
 javac *.java modules/*.java service/*.java components/*.java
 
-# Executar a aplicação
+# 3. Executar
 java App
 ```
 
-## Tecnologias Utilizadas
-- Java (JDK 8+)
-- Estruturas de dados: ArrayList
-- Entrada de usuário: Scanner
+---
 
-## Autor
-Projeto desenvolvido como atividade acadêmica para Java faculdade 2026.
+## 🛠️ Tech Stack
+
+| Tecnologia | Uso |
+|------------|-----|
+| Java 8+ | Linguagem principal |
+| ArrayList | Armazenamento em memória |
+| Scanner | Entrada de dados |
+| Switch-Case | Controle de fluxo |
+
+---
+
+## 📈 Roadmap
+
+### ✅ Concluído
+- [x] Estrutura do projeto
+- [x] Cadastro de usuários
+- [x] Listagem de usuários
+- [x] Menu interativo
+
+### 🔄 Em desenvolvimento
+- [ ] Implementar depósito
+- [ ] Implementar saque
+- [ ] Implementar transferência
+
+### 📋 Futuro
+- [ ] Banco de dados (persistência)
+- [ ] Validação de CPF
+- [ ] Tratamento de exceções
+- [ ] Testes unitários
+
+---
+
+## 💡 O que aprendi
+
+- Organização de código em **pacotes e camadas**
+- Uso de **coleções** (ArrayList) para armazenamento
+- Manipulação de **entrada/saída** de dados
+- Importância da **validação** de dados
+- Planejamento de **funcionalidades** antes de codar
+
+---
+
+## 📬 Contato
+
+- **GitHub**: [seu-usuario](https://github.com/seu-usuario)
+- **Email**: seu-email@example.com
+- **LinkedIn**: [seu-linkedin](https://linkedin.com/in/seu-linkedin)
+
+---
+
+⚡ Feito com dedicação por Erick da Silva Brasil
