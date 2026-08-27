@@ -130,9 +130,9 @@ java App
 
 ## 📬 Contato
 
-- **GitHub**: [seu-usuario](https://github.com/seu-usuario)
-- **Email**: seu-email@example.com
-- **LinkedIn**: [seu-linkedin](https://linkedin.com/in/seu-linkedin)
+- **GitHub**: [ErickDsBR](https://github.com/ErickDsBR)
+- **Email**: erick.brsil2102@gmail.com
+- **LinkedIn**: [Erick da Silva Brasil](https://www.linkedin.com/in/erick-da-silva-brasil/)
 
 ---
 
