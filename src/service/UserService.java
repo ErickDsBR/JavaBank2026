@@ -1,9 +1,11 @@
 package service;
+
 import java.util.Scanner;
+
+import modules.UserData.UserData;
+
 import java.util.List;
 import java.util.ArrayList;
-
-import modules.UserData;
 
 public class UserService {
     private static List<UserData> usersList = new ArrayList<>();
@@ -17,7 +19,6 @@ public class UserService {
             System.out.println("Informe o nome do usuário: ");
             String name = sc.nextLine();
             
-
             System.out.println("Informe o saldo do usuário: ");
             double balance = Double.parseDouble(sc.nextLine());
 
