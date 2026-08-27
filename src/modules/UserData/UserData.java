@@ -1,4 +1,4 @@
- package modules;
+ package modules.UserData;
 
 public class UserData {
     public String accountNumber;
