@@ -49,4 +49,30 @@ public class UserService {
         return usersList;
     }
 
+    public UserData CheckBalance(String accountNumber){ 
+        for(UserData user : usersList){
+            if (user.accountNumber.equals(accountNumber)) {
+                System.out.println("Usuário encontrado.");
+                System.out.println("Nome do Usuário: " + user.name);
+                System.out.println("Saldo: " + user.balance);
+                return user;
+            } else {
+                System.out.println("Usuário não encontrado.");
+                return null;
+            }
+        }
+        return null;
+    }
+    public UserData CurrentUser(String accountNumber){
+        for(UserData user : usersList){
+            if (user.accountNumber.equals(accountNumber)) {
+                return user;
+            }
+        }
+        System.out.println("Usuário não encontrado.");
+        return null;
+    }
+
+
+
 }
