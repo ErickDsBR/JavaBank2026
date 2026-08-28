@@ -1,18 +1,18 @@
 package service;
 
 import java.util.Scanner;
-
-import modules.UserData.UserData;
-
 import java.util.List;
 import java.util.ArrayList;
 
+import modules.UserData.UserData;
+import modules.UserData.Session;
+
 public class UserService {
-    private static List<UserData> usersList = new ArrayList<>();
-    
+    private static List<UserData> usersList = new ArrayList<>();  
     Scanner sc = new Scanner(System.in);
+
     public void NewUser() {
-        do{
+        
             System.out.println("Informe o número do Cpf: ");
             String accountNumber = sc.nextLine();
 
@@ -22,21 +22,19 @@ public class UserService {
             System.out.println("Informe o saldo do usuário: ");
             double balance = Double.parseDouble(sc.nextLine());
 
-            if (balance < 0) {
+            if (balance != 0) {
                 System.out.println("O saldo deve ser maior ou igual a zero.");
-                continue;
             }
-            System.out.println("Saldo válido.");
-
-            UserData newUser = new UserData(accountNumber, name, balance);
-            usersList.add(newUser);
-
-            System.out.println("Usuário criado com sucesso!");
-
-            break;
-        } while(true);
+            else{
+                System.out.println("Saldo válido.");
+                UserData newUser = new UserData(accountNumber, name, balance);
+                usersList.add(newUser);
+                System.out.println("Usuário criado com sucesso!");
+                return;
+            }
         
     }
+
     public List<UserData> ListUsers(){
         System.out.println("\n ===Lista de Usuários===");
 
@@ -63,16 +61,17 @@ public class UserService {
         }
         return null;
     }
+
     public UserData CurrentUser(String accountNumber){
         for(UserData user : usersList){
             if (user.accountNumber.equals(accountNumber)) {
+                Session.currentUser = user;
                 return user;
             }
         }
         System.out.println("Usuário não encontrado.");
         return null;
     }
-
-
+    
 
 }
