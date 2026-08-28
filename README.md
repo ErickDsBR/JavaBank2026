@@ -1,4 +1,4 @@
-# 🏦 JavaBank2026
+j# 🏦 JavaBank2026
 
 ![Java](https://img.shields.io/badge/Java-8%2B-orange)
 ![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow)
@@ -129,6 +129,15 @@ Chose An Option
 - [ ] Depósito em conta
 - [ ] Saque
 - [ ] Transferência entre contas
+
+### 🔧 Refatoração e Qualidade de Código
+- [ ] Constructor injection nas dependências (Menu, ClientMenu, UserService)
+- [ ] Compartilhar uma única instância de Scanner entre as classes
+- [ ] Padronizar métodos em camelCase (showMenu, newUser, checkBalance)
+- [ ] Encapsulamento dos campos de UserData (private + getters/setters)
+- [ ] Tratamento de exceções (NumberFormatException no parseInt)
+- [ ] Unificar idioma do código (PT ou EN em todo o projeto)
+- [ ] Remover recursão circular no ClientMenu (stack overflow)
 
 ### 📋 Futuro
 - [ ] Banco de dados (persistência)
