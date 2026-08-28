@@ -1,15 +1,15 @@
 package components;
 
 import java.util.Scanner;
-
+//! =================DATAS========================
 import modules.UserData.UserData;
 import service.UserService;
 
 public class Menu {
     public static void ShowMenu(){
         Scanner sc = new Scanner(System.in);
-        
-        UserService userService = new UserService(); 
+        UserService userService = new UserService();
+        ClientMenu clientMenu = new ClientMenu();
         
         //!current user
 
@@ -31,8 +31,7 @@ public class Menu {
 
             switch (opcao) {
                 case 1:{
-                    System.out.println("\n ===Criar/Abrir Conta do Cliente===");
-                    userService.NewUser();
+                    clientMenu.ShowClientMenu();
                     break;
                 }
                 case 2:
