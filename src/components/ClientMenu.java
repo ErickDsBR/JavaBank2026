@@ -1,36 +1,49 @@
-package components;
+
 
 import java.util.Scanner;
+import utils.Utils;
+
+import modules.UserData.UserData;
 import service.UserService;
+import modules.UserData.Session;
+
 
 public class ClientMenu {
-    Scanner sc = new Scanner(System.in);
     UserService userService = new UserService();
-    
     public void ShowClientMenu() {
+        Scanner sc = new Scanner(System.in);
         int option = 0;
-        do{
-            System.out.println("===CLIENT MENU===");
-            System.out.println("\nCreate/Access Client Account");
-            System.out.println("\n1. Create Account");
-            System.out.println("2. Access Account");
-            System.out.println("3. Exit");
+        
+        do{ 
+            if(Session.isUserLoggedIn()){
+                System.out.println("User is already logged in.");
+                UserMenu userMenu = new UserMenu();
+                userMenu.ShowUserMenu();
+                continue;
+            }
+            UserData currentUser = Session.currentUser;
+
+            Utils.ClearScreen();
+            System.out.println("        ===HELCOME TO ULTRABANK===");
+            System.out.println("        What would you like to do?");
+            System.out.println("        Current User: " + (currentUser != null ? currentUser.name : "No user logged in"));
+            System.out.print("\n1. Create Account   ");
+            System.out.println("2. Access Account   ");
+            System.out.print("\n3. Exit");
             option = Integer.parseInt(sc.nextLine());
+            
 
             switch(option){
                 case 1:
                     System.out.println("Create Account");
-                    userService.NewUser();
+                    userService.RegisterUser();
                     break;
                 case 2:
-                    System.out.println("\nAccess Account");
-                    System.out.println("Enter the account number (CPF): ");
-                    String user = sc.nextLine();
-                    System.out.println("\nAccessing account for user: " + user);
-                    userService.CurrentUser(user);
+                    System.out.println("Access Account");
+                    userService.GetUserByAccountNumber();
                     break;
                 case 3:
-                    System.out.println("\nReturning to Main Menu");
+                    System.out.println("\n Thank you for using UltraBank. Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
@@ -38,9 +51,6 @@ public class ClientMenu {
             }
         }while(option != 3);
         sc.close();
-        Menu.ShowMenu();
-
-        
     }
 
 }

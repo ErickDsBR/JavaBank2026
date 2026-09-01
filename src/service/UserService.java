@@ -1,77 +1,61 @@
 package service;
-
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-
 import modules.UserData.UserData;
 import modules.UserData.Session;
 
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserService {
-    private static List<UserData> usersList = new ArrayList<>();  
     Scanner sc = new Scanner(System.in);
-
-    public void NewUser() {
-        
-            System.out.println("Informe o número do Cpf: ");
-            String accountNumber = sc.nextLine();
-
-            System.out.println("Informe o nome do usuário: ");
-            String name = sc.nextLine();
-            
-            System.out.println("Informe o saldo do usuário: ");
-            double balance = Double.parseDouble(sc.nextLine());
-
-            if (balance != 0) {
-                System.out.println("O saldo deve ser maior ou igual a zero.");
-            }
-            else{
-                System.out.println("Saldo válido.");
-                UserData newUser = new UserData(accountNumber, name, balance);
-                usersList.add(newUser);
-                System.out.println("Usuário criado com sucesso!");
-                return;
-            }
-        
-    }
-
-    public List<UserData> ListUsers(){
-        System.out.println("\n ===Lista de Usuários===");
-
-        for (UserData user : usersList) {
-            System.out.println("Número da Conta: " + user.accountNumber);
-            System.out.println("Nome do Usuário: " + user.name);
-            System.out.println("Saldo: " + user.balance);
-            System.out.println("------------------------");
-        }
-        return usersList;
-    }
-
-    public UserData CheckBalance(String accountNumber){ 
-        for(UserData user : usersList){
-            if (user.accountNumber.equals(accountNumber)) {
-                System.out.println("Usuário encontrado.");
-                System.out.println("Nome do Usuário: " + user.name);
-                System.out.println("Saldo: " + user.balance);
-                return user;
-            } else {
-                System.out.println("Usuário não encontrado.");
-                return null;
-            }
-        }
-        return null;
-    }
-
-    public UserData CurrentUser(String accountNumber){
-        for(UserData user : usersList){
-            if (user.accountNumber.equals(accountNumber)) {
-                Session.currentUser = user;
-                return user;
-            }
-        }
-        System.out.println("Usuário não encontrado.");
-        return null;
-    }
+    List<UserData> user = new ArrayList<>();
     
+    public UserData RegisterUser() {
+        do{
+            System.out.println("Enter the account number (CPF): ");
+            String accountNumber = sc.nextLine();
+            System.out.println("Enter the name: ");
+            String name = sc.nextLine();
+            System.out.println("Enter the initial balance: ");
+            double balance = Double.parseDouble(sc.nextLine());
+            
+            if (balance <= 0) {
+                System.out.println("The initial balance must be different from 0.");
+                continue;
+            }else {
+                System.out.println("User registered successfully!");
+                UserData newUser = new UserData(accountNumber, name, balance);
+                user.add(newUser);
+
+                //! saida do usuario
+                System.out.println("Account Number: " + newUser.accountNumber + "\nName: " + newUser.name + "\nBalance: " + newUser.balance);
+                return newUser;
+            }
+            
+            
+        }while(true);
+        
+
+        
+    }
+
+    public UserData GetUserByAccountNumber() {
+        do{
+            System.out.println("Enter the account number (CPF): ");
+            String accountNumber = sc.nextLine();
+            for (UserData u : user) {
+                if (u.accountNumber.equals(accountNumber)) {
+                    Session.currentUser = u;
+                    System.out.println("Welcome, " + u.name + "! You have successfully logged in.");
+                    return u;
+                }
+            }
+            System.out.println("User not found.");
+        } while(true);
+    }
+
+    public void GetCurrentUser(String userInfo) {
+        System.out.println("Current User: " + userInfo);
+    }
 
 }
