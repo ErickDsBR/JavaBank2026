@@ -36,19 +36,23 @@ O projeto segue o padrão **em camadas**, separando responsabilidades:
 ```
 ┌─────────────────────────────────────────────┐
 │        Camada de Apresentação               │
-│            (App.java → Menu.java)           │
+│     (App.java → ClientMenu → UserMenu)      │
 ├─────────────────────────────────────────────┤
 │        Camada de Serviço                    │
 │         (UserService.java)                  │
 ├─────────────────────────────────────────────┤
 │        Camada de Modelo                     │
-│          (UserData.java)                    │
+│       (UserData.java, Session.java)         │
+├─────────────────────────────────────────────┤
+│        Camada de Utilitários                │
+│            (Utils.java)                     │
 └─────────────────────────────────────────────┘
 ```
 
 - **Apresentação**: Interface com o usuário via console (menu interativo)
 - **Serviço**: Lógica de negócio (criar usuários, listar, consultar saldo, sessão)
-- **Modelo**: Estrutura de dados (conta, nome, saldo)
+- **Modelo**: Estrutura de dados (conta, nome, saldo) e gerenciamento de sessão
+- **Utilitários**: Funções auxiliares (limpeza de tela)
 
 ---
 
@@ -58,12 +62,16 @@ O projeto segue o padrão **em camadas**, separando responsabilidades:
 src/
 ├── App.java                          # Ponto de entrada
 ├── components/
-│   └── Menu.java                     # Menu interativo
+│   ├── ClientMenu.java               # Menu principal do cliente
+│   └── UserMenu.java                 # Menu do usuário logado
 ├── modules/
 │   └── UserData/
-│       └── UserData.java             # Modelo de dados
-└── service/
-    └── UserService.java              # Lógica de negócio
+│       ├── UserData.java             # Modelo de dados
+│       └── Session.java              # Gerenciamento de sessão
+├── service/
+│   └── UserService.java              # Lógica de negócio
+└── utils/
+    └── Utils.java                    # Utilitários gerais
 ```
 
 ---
@@ -80,7 +88,7 @@ src/
 cd src
 
 # 2. Compilar os arquivos
-javac *.java modules/UserData/*.java service/*.java components/*.java
+javac *.java modules/UserData/*.java service/*.java components/*.java utils/*.java
 
 # 3. Executar
 java App
@@ -111,6 +119,7 @@ Chose An Option
 | Scanner | Entrada de dados no console |
 | Switch-Case | Controle de fluxo do menu |
 | Classes e Objetos | Modelo de dados (UserData) |
+| Métodos Estáticos | Utilitários e sessão (Utils, Session) |
 
 ---
 
@@ -155,6 +164,9 @@ Chose An Option
 - Importância da **validação** de dados (saldo negativo)
 - Controle de fluxo com **switch-case** e loops
 - Sistema de **sessão** para rastrear o usuário atual
+- **Refatoração** de código para melhorar legibilidade e manutenção
+- Separação de responsabilidades entre **componentes** (ClientMenu, UserMenu)
+- Criação de **utilitários** reutilizáveis (Utils)
 
 ---
 
