@@ -23,8 +23,9 @@ demonstrando conceitos de Programação Orientada a Objetos e organização em c
 | Consulta de saldo por CPF | ✅ Implementado |
 | Seleção de usuário atual (sessão) | ✅ Implementado |
 | Validação de saldo negativo | ✅ Implementado |
-| Depósito/Transferência | 🔄 Planejado |
-| Saque | 🔄 Planejado |
+| Depósito em conta | ✅ Implementado |
+| Saque | ✅ Implementado |
+| Transferência entre contas | ✅ Implementado |
 | Persistência de dados | 🔄 Planejado |
 
 ---
@@ -39,7 +40,7 @@ O projeto segue o padrão **em camadas**, separando responsabilidades:
 │     (App.java → ClientMenu → UserMenu)      │
 ├─────────────────────────────────────────────┤
 │        Camada de Serviço                    │
-│         (UserService.java)                  │
+│    (UserService.java, BankService.java)     │
 ├─────────────────────────────────────────────┤
 │        Camada de Modelo                     │
 │       (UserData.java, Session.java)         │
@@ -50,7 +51,7 @@ O projeto segue o padrão **em camadas**, separando responsabilidades:
 ```
 
 - **Apresentação**: Interface com o usuário via console (menu interativo)
-- **Serviço**: Lógica de negócio (criar usuários, listar, consultar saldo, sessão)
+- **Serviço**: Lógica de negócio (criar usuários, login, depósito, saque, transferência)
 - **Modelo**: Estrutura de dados (conta, nome, saldo) e gerenciamento de sessão
 - **Utilitários**: Funções auxiliares (limpeza de tela)
 
@@ -69,7 +70,8 @@ src/
 │       ├── UserData.java             # Modelo de dados
 │       └── Session.java              # Gerenciamento de sessão
 ├── service/
-│   └── UserService.java              # Lógica de negócio
+│   ├── UserService.java              # Gerenciamento de usuários
+│   └── BankService.java              # Operações bancárias
 └── utils/
     └── Utils.java                    # Utilitários gerais
 ```
@@ -97,15 +99,13 @@ java App
 ### Menu Interativo
 
 ```
-===MENU===
-Usuário atual: Nenhum usuário selecionado
-Chose An Option
+        ===HELCOME TO ULTRABANK===
+        What would you like to do?
+        Current User: No user logged in
 
-1 - Criar/Abrir Conta do Cliente
-2 - Consultar Saldo
-3 - Depositar/Transferir
-4 - Realizar Saque
-5 - Sair
+1. Create Account   2. Access Account   
+
+3. Exit
 ```
 
 ---
@@ -128,19 +128,20 @@ Chose An Option
 ### ✅ Concluído
 - [x] Estrutura do projeto em camadas
 - [x] Cadastro de usuários (CPF, nome, saldo)
-- [x] Listagem de usuários
 - [x] Consulta de saldo por CPF
 - [x] Sistema de sessão (usuário atual)
 - [x] Validação de saldo negativo
 - [x] Menu interativo com opções
+- [x] Depósito em conta
+- [x] Saque
+- [x] Transferência entre contas
 
 ### 🔄 Em desenvolvimento
-- [ ] Depósito em conta
-- [ ] Saque
-- [ ] Transferência entre contas
+- [ ] Listagem de usuários
+- [ ] Persistência de dados
 
 ### 🔧 Refatoração e Qualidade de Código
-- [ ] Constructor injection nas dependências (Menu, ClientMenu, UserService)
+- [x] Constructor injection nas dependências (ClientMenu, UserMenu, UserService)
 - [ ] Compartilhar uma única instância de Scanner entre as classes
 - [ ] Padronizar métodos em camelCase (showMenu, newUser, checkBalance)
 - [ ] Encapsulamento dos campos de UserData (private + getters/setters)
@@ -167,6 +168,8 @@ Chose An Option
 - **Refatoração** de código para melhorar legibilidade e manutenção
 - Separação de responsabilidades entre **componentes** (ClientMenu, UserMenu)
 - Criação de **utilitários** reutilizáveis (Utils)
+- **Injeção de dependência** via construtor para desacoplamento
+- Separação de **camadas de serviço** (UserService vs BankService)
 
 ---
 
