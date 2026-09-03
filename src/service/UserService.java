@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class UserService {
     Scanner sc = new Scanner(System.in);
     List<UserData> user = new ArrayList<>();
@@ -39,14 +40,13 @@ public class UserService {
         
     }
 
-    public UserData GetUserByAccountNumber() {
+    public UserData Login() {
         do{
             System.out.println("Enter the account number (CPF): ");
             String accountNumber = sc.nextLine();
             for (UserData u : user) {
                 if (u.accountNumber.equals(accountNumber)) {
                     Session.currentUser = u;
-                    System.out.println("Welcome, " + u.name + "! You have successfully logged in.");
                     return u;
                 }
             }
@@ -54,8 +54,14 @@ public class UserService {
         } while(true);
     }
 
-    public void GetCurrentUser(String userInfo) {
-        System.out.println("Current User: " + userInfo);
+    public UserData GetUserByAccountNumber(String accountNumber) {
+        for (UserData u : user) {
+            if (u.accountNumber.equals(accountNumber)) {
+                return u;
+            }
+        }
+        return null;
     }
+    
 
 }
