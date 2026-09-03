@@ -10,14 +10,15 @@ import modules.UserData.Session;
 
 public class ClientMenu {
     UserService userService = new UserService();
+    
+    
     public void ShowClientMenu() {
         Scanner sc = new Scanner(System.in);
         int option = 0;
         
         do{ 
             if(Session.isUserLoggedIn()){
-                System.out.println("User is already logged in.");
-                UserMenu userMenu = new UserMenu();
+                UserMenu userMenu = new UserMenu(userService);
                 userMenu.ShowUserMenu();
                 continue;
             }
@@ -40,7 +41,7 @@ public class ClientMenu {
                     break;
                 case 2:
                     System.out.println("Access Account");
-                    userService.GetUserByAccountNumber();
+                    userService.Login();
                     break;
                 case 3:
                     System.out.println("\n Thank you for using UltraBank. Goodbye!");
