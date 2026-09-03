@@ -1,35 +1,48 @@
 import java.util.Scanner;
 import utils.Utils;
-
+import service.BankService;
+import service.UserService;
 import modules.UserData.Session;
+import modules.UserData.UserData;
+
+
+
 public class UserMenu {
     Scanner sc = new Scanner(System.in);
+    BankService bankService;
+    UserService userService;
+    
+    public UserMenu(UserService userService) {
+        this.userService = userService;
+        this.bankService = new BankService(userService);
+    }
+
     public void ShowUserMenu() {
         do{
             Utils.ClearScreen();
             System.out.println("        ===USER MENU===");
-            System.out.println("\n 1. Check Balance");
-            System.out.println("2. Deposit");
-            System.out.println("3. Withdraw");
-            System.out.println("4. Transfer");
-            System.out.println("5. Logout");
+            System.out.println("Hello, " + Session.currentUser.name + " your Balance is: " + Session.currentUser.balance);
+            System.out.println("        What would you like to do?");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Transfer");
+            System.out.println("4. Logout");
             int option = Integer.parseInt(sc.nextLine());
             
             switch(option){
                 case 1 -> {
-                    System.out.println("Check Balance");
+                    System.out.println("Deposit");
+                    bankService.Deposit();
                 }
                 case 2 -> {
-                    System.out.println("Deposit");
+                    System.out.println("Withdraw"); 
+                    bankService.Withdraw();
                 }
                 case 3 -> {
-                    System.out.println("Withdraw");
-                }
-                case 4 -> {
-
                     System.out.println("Transfer");
-                }
-                case 5 -> {
+                    bankService.Transfer();
+                } 
+                case 4 -> {
                     System.out.println("Logout");
                     Session.currentUser = null; 
                     return; 
